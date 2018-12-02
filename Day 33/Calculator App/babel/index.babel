@@ -1,0 +1,118 @@
+// !! IMPORTANT README:
+
+// You may add additional external JS and CSS as needed to complete the project, however the current external resource MUST remain in place for the tests to work. BABEL must also be left in place. 
+
+/***********
+INSTRUCTIONS:
+  - Select the project you would 
+    like to complete from the dropdown 
+    menu.
+  - Click the "RUN TESTS" button to
+    run the tests against the blank 
+    pen.
+  - Click the "TESTS" button to see 
+    the individual test cases. 
+    (should all be failing at first)
+  - Start coding! As you fulfill each
+    test case, you will see them go   
+    from red to green.
+  - As you start to build out your 
+    project, when tests are failing, 
+    you should get helpful errors 
+    along the way!
+    ************/
+
+// PLEASE NOTE: Adding global style rules using the * selector, or by adding rules to body {..} or html {..}, or to all elements within body or html, i.e. h1 {..}, has the potential to pollute the test suite's CSS. Try adding: * { color: red }, for a quick example!
+
+// Once you have read the above messages, you can delete all comments. 
+class Calculator extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      number: 0,
+      nextnumber: 0,
+      operator: '',
+      final: 0
+    };
+    this.handleNumberClick = this.handleNumberClick.bind(this);
+    this.handleOperatorClick = this.handleOperatorClick.bind(this);
+    this.handleEvaluateClick = this.handleEvaluateClick.bind(this);
+    this.handleClear = this.handleClear.bind(this);
+  }
+  handleNumberClick(e){
+      if(this.state.number != 0 && this.state.operator != ''){
+        this.setState({nextnumber: e.target.value});
+      }else{
+        this.setState({number: e.target.value }); 
+      }
+  }
+  handleOperatorClick(e){
+      this.setState({operator: e.target.value});   
+  }
+  handleEvaluateClick(){
+      let total = 0;
+      switch(this.state.operator){
+        case '+':
+           total = parseInt(this.state.number) + parseInt(this.state.nextnumber);
+        case '-':
+           total = parseInt(this.state.number) - parseInt(this.state.nextnumber);
+        case '*':
+           total = parseInt(this.state.number) * parseInt(this.state.nextnumber);
+        case '/':
+           total = parseInt(this.state.number) / parseInt(this.state.nextnumber);
+      }
+      this.setState({final: total.toString()});
+  }
+  handleClear(){
+    this.setState({number:0, nextnumber:0, operator: '', final: 0})
+  }
+  
+  render(){
+    return (
+      <div>
+        <div id="display">
+          <h1>{this.state.final}</h1>
+          <p>{this.state.operator}</p>
+        </div>
+        <Buttons number={this.handleNumberClick} operator={this.handleOperatorClick} evaluate={this.handleEvaluateClick} clear={this.handleClear}/>
+      </div>
+      );
+  }
+};
+
+class Buttons extends React.Component{
+
+  render(){
+    return(<div class="row">
+        <div class="col-lg-3">          
+          <button id="one" value="1" onClick={this.props.number}>1</button>
+          <button id="two" value="2" onClick={this.props.number}>2</button>
+          <button id="three" value="3" onClick={this.props.number}>3</button>
+          <button id="add" value="+" onClick={this.props.operator}>+</button>
+        </div>
+        <div class="col-lg-3"> 
+          <button id="four" value="4" onClick={this.props.number}>4</button>
+          <button id="five" value="5" onClick={this.props.number}>5</button>
+          <button id="six" value="6" onClick={this.props.number}>6</button>
+          <button id="subtract" value="-" onClick={this.props.operator}>-</button>
+        </div>
+        <div class="col-lg-3"> 
+          <button id="seven" value="7" onClick={this.props.number}>7</button>
+          <button id="eight" value="8" onClick={this.props.number}>8</button>
+          <button id="nine" value="9" onClick={this.props.number}>9</button>
+          <button id="multiply" value="*" onClick={this.props.operator}>*</button>
+        </div>
+        <div class="col-lg-3"> 
+          <button id="decimal" value="." >.</button>
+          <button id="zero" value="0" onClick={this.props.number}>0</button>
+          <button id="clear" value="c" onClick={this.props.clear}>C</button>
+          <button id="divide" value="/" onClick={this.props.operator}>/</button>
+        </div>
+        <div class="col-lg-12"> 
+          <button id="equals" value="=" onClick={this.props.evaluate}>=</button>
+        </div>
+      </div>
+    );
+  }
+}
+ ReactDOM.render(<Calculator />, document.getElementById('app'));
