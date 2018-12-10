@@ -1,0 +1,108 @@
+// !! IMPORTANT README:
+
+// You may add additional external JS and CSS as needed to complete the project, however the current external resource MUST remain in place for the tests to work. BABEL must also be left in place. 
+
+/***********
+INSTRUCTIONS:
+  - Select the project you would 
+    like to complete from the dropdown 
+    menu.
+  - Click the "RUN TESTS" button to
+    run the tests against the blank 
+    pen.
+  - Click the "TESTS" button to see 
+    the individual test cases. 
+    (should all be failing at first)
+  - Start coding! As you fulfill each
+    test case, you will see them go   
+    from red to green.
+  - As you start to build out your 
+    project, when tests are failing, 
+    you should get helpful errors 
+    along the way!
+    ************/
+
+// PLEASE NOTE: Adding global style rules using the * selector, or by adding rules to body {..} or html {..}, or to all elements within body or html, i.e. h1 {..}, has the potential to pollute the test suite's CSS. Try adding: * { color: red }, for a quick example!
+
+// Once you have read the above messages, you can delete all comments. 
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      
+    };
+    this.playAudio = this.playAudio.bind(this);
+  }
+  
+  playAudio(e){
+    switch(e.target.value){
+      case "Q":
+        this.setState({audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'});
+        break;
+      case "W":
+        this.setState({audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'});
+        break;
+      case "E":
+        this.setState({audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'});
+        break;
+      case "A":
+        this.setState({audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'});
+        break;
+      case "S":
+        this.setState({audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'});
+        break;
+      case "D":
+        this.setState({audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'});
+        break;
+      case "Z":
+        this.setState({audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'});
+        break;
+      case "X":
+        this.setState({audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'});
+        break;
+      case "C":
+        this.setState({audio: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'});
+        break;
+    }
+    this.state.audio.play();
+  }
+  
+  render(){
+    return(
+      <div>
+        <h1>Drum Kit | FreeCodeCamp</h1>
+        <DrumMachine play={this.playAudio}/>
+      </div>
+    );
+  }
+}
+
+class DrumMachine extends React.Component{
+  render(){
+    return(<div id="drum-machine">
+        <div id="display">Burty Base Drum</div>
+        <div class="drum-pad">
+          <div class="row">
+            <button onClick={this.props.play} onKeyPress={this.props.play} value="Q">Q</button>
+            <button onClick={this.props.play} onKeyPress={this.props.play} value="W">W</button>
+            <button onClick={this.props.play} onKeyPress={this.props.play} value="E">E</button>
+          </div>
+          <div class="row">
+            <button onClick={this.props.play} onKeyPress={this.props.play} value="A">A</button>
+            <button onClick={this.props.play} onKeyPress={this.props.play} value="S">S</button>
+            <button onClick={this.props.play} onKeyPress={this.props.play} value="D">D</button>
+          </div>
+          <div class="row">
+            <button onClick={this.props.play} onKeyPress={this.props.play} value="Z">Z</button>
+            <button onClick={this.props.play} onKeyPress={this.props.play} value="X">X</button>
+            <button onClick={this.props.play} onKeyPress={this.props.play} value="C">C</button>
+          </div>
+        </div>
+      </div>);
+  }
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('app')
+);
