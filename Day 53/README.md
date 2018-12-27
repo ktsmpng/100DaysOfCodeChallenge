@@ -20,3 +20,5 @@ Notes:
 			naming convention: .btn--orange
 							   .btn--big
 			methodology: specific to component
+
+Code: https://codepen.io/kitsumpang/pen/rozQvv?editors=1100
